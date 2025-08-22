@@ -1,0 +1,28 @@
+# Archivos del sistema (Windows / macOS / Linux)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Carpeta de caché del navegador
+.cache/
+
+# Archivos temporales
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Archivos de VSCode o IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de compilación
+dist/
+build/
