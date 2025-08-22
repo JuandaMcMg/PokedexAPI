@@ -47,17 +47,16 @@ const typeTranslations = {
   fairy: "Hada"
 };
 
-// Renderizar datos en la card
 function renderPokemon(pokemon) {
+  currentPokemonId = pokemon.id;
+
   pokemonName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
   pokemonId.textContent = `#${pokemon.id}`;
   pokemonImage.src = pokemon.sprites.other["official-artwork"].front_default;
 
-  // Convertir tipos a español
   const translatedTypes = pokemon.types.map(t => typeTranslations[t.type.name] || t.type.name);
   pokemonType.textContent = translatedTypes.join(", ");
 
-  // Estadísticas base
   const stats = pokemon.stats;
   setStat("hp", stats[0].base_stat);
   setStat("attack", stats[1].base_stat);
@@ -67,9 +66,14 @@ function renderPokemon(pokemon) {
   setStat("speed", stats[5].base_stat);
 
   renderMoves(pokemon);
-
   pokemonCard.classList.remove("hidden");
+
+  // --- Reiniciar animación ---
+  pokemonCard.classList.remove("animate");
+  void pokemonCard.offsetWidth; // fuerza reflow
+  pokemonCard.classList.add("animate");
 }
+
 
 async function renderMoves(pokemon) {
   const pokemonMovesContainer = document.getElementById("pokemonMoves");
@@ -137,3 +141,24 @@ randomBtn.addEventListener("click", () => {
 
 // Mostrar por defecto un Pokémon inicial (ej: Pikachu)
 fetchPokemon("pikachu");
+
+let currentPokemonId = 1; // inicializa con el primero o el que quieras mostrar al cargar
+
+// Función para mostrar un Pokémon y actualizar el ID actual
+function loadPokemon(id) {
+  if (id < 1) id = 1;  // evita ir por debajo de 1
+  if (id > 1025) id = 1025; // ajusta si usas otro máximo
+  currentPokemonId = id;
+  fetchPokemon(id); // tu función ya existente para mostrarlo
+}
+
+// Botones siguiente y anterior
+document.getElementById('nextBtn').addEventListener('click', () => {
+  loadPokemon(currentPokemonId + 1);
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  loadPokemon(currentPokemonId - 1);
+});
+
+

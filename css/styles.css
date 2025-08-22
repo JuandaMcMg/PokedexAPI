@@ -124,7 +124,7 @@ body {
 .type-badge {
   display: inline-block;
   background: #ffcc00;
-  color: #333;
+  color: #fcfcfcff;
   padding: 6px 14px;
   border-radius: 20px;
   font-weight: bold;
@@ -336,5 +336,44 @@ body {
   font-weight: 600; 
   margin-bottom: 4px;
 }
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.navigation button {
+  background-color:  #ffcc00; /* amarillo */
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.navigation button:hover {
+  background-color:  #ffcc00; /* un amarillo más oscuro en hover */
+  transform: scale(1.05);
+}
+
+.pokemon-card.animate {
+  animation: fadeIn 1.0s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
