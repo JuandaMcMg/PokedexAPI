@@ -57,7 +57,27 @@ function renderPokemon(pokemon) {
   const translatedTypes = pokemon.types.map(t => typeTranslations[t.type.name] || t.type.name);
   pokemonType.textContent = translatedTypes.join(", ");
 
+  // Estadísticas base
+  const stats = pokemon.stats;
+  setStat("hp", stats[0].base_stat);
+  setStat("attack", stats[1].base_stat);
+  setStat("defense", stats[2].base_stat);
+  setStat("spattack", stats[3].base_stat);
+  setStat("spdefense", stats[4].base_stat);
+  setStat("speed", stats[5].base_stat);
+
   pokemonCard.classList.remove("hidden");
+}
+
+// Función auxiliar para llenar barras
+function setStat(statName, value) {
+  const bar = document.getElementById(`${statName}-bar`);
+  const text = document.getElementById(`${statName}-value`);
+  text.textContent = value;
+
+  // Normalizamos valor (máximo 255 en Pokémon base stats)
+  const percentage = Math.min((value / 255) * 100, 100);
+  bar.style.width = `${percentage}%`;
 }
 
 // Evento buscar
