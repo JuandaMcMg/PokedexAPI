@@ -66,7 +66,40 @@ function renderPokemon(pokemon) {
   setStat("spdefense", stats[4].base_stat);
   setStat("speed", stats[5].base_stat);
 
+  renderMoves(pokemon);
+
   pokemonCard.classList.remove("hidden");
+}
+
+async function renderMoves(pokemon) {
+  const pokemonMovesContainer = document.getElementById("pokemonMoves");
+  pokemonMovesContainer.innerHTML = "";
+
+
+  for (const m of pokemon.moves) {
+    try {
+      const res = await fetch(m.move.url);  // consultamos info del movimiento
+      const moveData = await res.json();
+
+      // Tipo traducido
+      const moveType = typeTranslations[moveData.type.name] || moveData.type.name;
+
+      // Creamos un div para mostrarlo
+      const moveEl = document.createElement("div");
+      moveEl.classList.add("move-card");
+      moveEl.innerHTML = `
+        <div class="move-name">${m.move.name.charAt(0).toUpperCase() + m.move.name.slice(1)}</div>
+        <div class="move-info">
+          Tipo: ${moveType} | Potencia: ${moveData.power || "—"} | Precisión: ${moveData.accuracy || "—"}%
+        </div>
+      `;
+      
+
+      pokemonMovesContainer.appendChild(moveEl);
+    } catch (err) {
+      console.error("Error cargando movimiento:", err);
+    }
+  }
 }
 
 // Función auxiliar para llenar barras

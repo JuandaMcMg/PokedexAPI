@@ -195,7 +195,7 @@ body {
 .pokemon-stats h3 {
   font-size: 1.2rem;
   margin-bottom: 8px;
-  color: #002060;            
+  color: #4a5eff;            
   font-weight: normal;       
   position: relative;
 }
@@ -205,7 +205,7 @@ body {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #002060; 
+  background-color: #4a5eff; 
   margin-top: 6px;
 }
 
@@ -271,4 +271,70 @@ body {
     flex-direction: column;
   }
 }
+
+/*Movimientos*/
+#pokemonMoves{
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+  
+}
+.pokemon-moves {
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+}
+
+.pokemon-moves h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #4a5eff;
+  font-weight: normal;
+  position: relative;
+}
+
+.pokemon-moves h3::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #4a5eff;
+  margin-top: 6px;
+}
+
+.moves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.move-item {
+  font-size: 0.9rem;
+  color: #333;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.move-card {
+  border: 1px solid #ddd;
+  border-left: 5px solid #4a5eff; /* línea azul lateral */
+  border-radius: 10px;
+  padding: 6px 12px;
+  background: #f9fafb;
+  font-size: 0.9rem;
+   transition: background 0.2s;
+  
+}
+.move-card:hover {
+  background: #f9fafb;       /* gris muy claro como efecto hover */
+  border-left-color: #2563eb; /* azul más oscuro */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* un poco más de sombra */
+}
+
+.move-name {
+  font-weight: 600; 
+  margin-bottom: 4px;
+}
+
 
