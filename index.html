@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex Digital</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+  <!-- Encabezado -->
+  <header class="header">
+    <h1 class="gradient-title">Pokédex Digital</h1>
+    <p>Descubre el mundo de los Pokémon</p>
+  </header>
+
+  <!-- Barra de búsqueda en contenedor -->
+  <section class="search-container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Busca un Pokémon...">
+      <button id="searchBtn">Buscar</button>
+      <button id="randomBtn" class="random">Aleatorio</button>
+    </div>
+  </section>
+
+  <!-- Card de Pokémon -->
+  <section id="pokemonCard" class="pokemon-card hidden">
+    <div class="pokemon-header">
+      <h2 id="pokemonName">Pachirisu</h2>
+      <p id="pokemonId">#417</p>
+    </div>
+    <div class="pokemon-body">
+      <img id="pokemonImage" src="" alt="Imagen Pokémon">
+      <div class="pokemon-type">
+        <span id="pokemonType" class="type-badge">Eléctrico</span>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

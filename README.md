@@ -19,5 +19,4 @@ Tecnologías usadas:
 Cómo ejecutar el proyecto:
 
     git clone https://github.com/JuandaMcMg/PokedexAPI.git
-    cd pokeapi-app
     # abrir index.html en el navegador
