@@ -14,9 +14,12 @@ async function fetchPokemon(query) {
     const q = String(query).trim().toLowerCase();
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);
     if (!response.ok) {
-      alert("Pokémon no encontrado 😢");
+      showNotFoundMessage("¡Ups! No encontramos ese Pokémon 😢");
       return;
+    } else {
+      hideNotFoundMessage();
     }
+
 
     const data = await response.json();
     renderPokemon(data);
@@ -160,5 +163,20 @@ document.getElementById('nextBtn').addEventListener('click', () => {
 document.getElementById('prevBtn').addEventListener('click', () => {
   loadPokemon(currentPokemonId - 1);
 });
+
+function showNotFoundMessage(text) {
+  const msg = document.getElementById("notFoundMessage");
+  msg.textContent = text;
+  msg.classList.remove("hidden");
+  // Reinicia la animación
+  msg.style.animation = "none";
+  void msg.offsetWidth; // fuerza reflow
+  msg.style.animation = null;
+}
+
+function hideNotFoundMessage() {
+  const msg = document.getElementById("notFoundMessage");
+  msg.classList.add("hidden");
+}
 
 

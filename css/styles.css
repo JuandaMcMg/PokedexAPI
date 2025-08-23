@@ -375,5 +375,33 @@ body {
   }
 }
 
+#notFoundMessage {
+  background-color: #ff4d4d; /* rojo Pokémon */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 15px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  max-width: 300px;
+  font-size: 1rem;
+  animation: popIn 0.4s ease-out;
+}
+
+#notFoundMessage.hidden {
+  display: none;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 
