@@ -10,7 +10,7 @@ body {
   background-color: #f5f5f5;
   color: #333;
   padding: 20px;
-  text-align: center;
+  text-align: center;  
 }
 
 /* === Encabezado === */
@@ -64,6 +64,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 #searchBtn {
@@ -174,11 +175,6 @@ body {
   z-index: 2;
 }
 
-/* Hover para botones (más específico para no afectar otros botones globales) */
-.search-bar button {
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
 .search-bar button:hover {
   transform: translateY(-4px) scale(1.04);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
@@ -190,6 +186,7 @@ body {
   padding: 20px;
   text-align: left;
   border-top: 1px solid #eee;
+  flex: 1;
 }
 
 .pokemon-stats h3 {
@@ -212,7 +209,7 @@ body {
 .stat {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
@@ -253,17 +250,7 @@ body {
   gap: 20px;
 }
 
-/* Estadísticas alineadas a la izquierda */
-.pokemon-stats {
-  flex: 1;
-  text-align: left;
-}
 
-/* Mantener la parte de movimientos lista pero vacía */
-.pokemon-moves {
-  flex: 1;
-  background: transparent; /* espacio vacío, sin diseño todavía */
-}
 
 /* Ajuste para pantallas pequeñas */
 @media (max-width: 480px) {
@@ -273,16 +260,18 @@ body {
 }
 
 /*Movimientos*/
+.pokemon-moves {
+  flex: 1;
+  border-top: 1px solid #eee;
+  padding: 20px;
+  text-align: left
+}
+
 #pokemonMoves{
   max-height: 200px;
   overflow-y: auto;
   padding-right: 5px;
   
-}
-.pokemon-moves {
-  flex: 1;
-  padding: 20px;
-  text-align: left;
 }
 
 .pokemon-moves h3 {
@@ -318,30 +307,32 @@ body {
 }
 .move-card {
   border: 1px solid #ddd;
-  border-left: 5px solid #4a5eff; /* línea azul lateral */
+  border-left: 4px solid #4a5eff; 
   border-radius: 10px;
   padding: 6px 12px;
   background: #f9fafb;
   font-size: 0.9rem;
-   transition: background 0.2s;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   
 }
 .move-card:hover {
-  background: #f9fafb;       /* gris muy claro como efecto hover */
-  border-left-color: #2563eb; /* azul más oscuro */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* un poco más de sombra */
+  background: #f9fafb;       
+  border-left-color: #2563eb; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); 
+  transform: translateY(-4px) scale(1.0); 
+
 }
 
 .move-name {
   font-weight: 600; 
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .navigation {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 20px;
+  padding: 10px 0;
 }
 
 .navigation button {
@@ -356,8 +347,8 @@ body {
 }
 
 .navigation button:hover {
-  background-color:  #ffcc00; /* un amarillo más oscuro en hover */
-  transform: scale(1.05);
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .pokemon-card.animate {
