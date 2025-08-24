@@ -1,83 +1,91 @@
-/* === Reset === */
+/* === Reset básico para todos los elementos === */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Asegura que width/height incluyan borde y padding */
 }
 
+/* === Estilos generales del body === */
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #f5f5f5;         
+  color: #333;                        
   padding: 20px;
-  text-align: center;  
+  text-align: center;                
 }
 
-/* === Encabezado === */
+/* === Encabezado principal === */
 .header h1 {
   font-size: 2.2rem;
   margin-bottom: 5px;
 }
 
+/* Título con degradado de color */
 .gradient-title {
-  background: linear-gradient(90deg, #4a5eff, #ffcc00);
-  -webkit-background-clip: text;
+  background: linear-gradient(90deg, #4a5eff, #ffcc00); 
+  -webkit-background-clip: text; 
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
 }
 
+/* Subtítulo debajo del h1 */
 .header p {
   color: #777;
   margin-bottom: 20px;
   font-size: 14px;
 }
 
-/* === Contenedor de búsqueda === */
+/* === Contenedor de la barra de búsqueda === */
 .search-container {
   background: white;
   padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
   max-width: 900px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 30px auto; 
 }
 
+/* Barra que agrupa input y botones */
 .search-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;      
   justify-content: center;
-  gap: 10px;
+  gap: 10px;            
 }
 
+/* Input de búsqueda */
 .search-bar input {
   padding: 10px;
-  flex: 1;
-  min-width: 200px;
+  flex: 1;             
+  min-width: 200px;    
   border: 1px solid #ddd;
   border-radius: 8px;
 }
 
+/* Estilos generales para botones */
 .search-bar button {
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease; /* Animación suave */
 }
 
+/* Botón de búsqueda */
 #searchBtn {
-  background: #4a5eff;
+  background: #4a5eff; 
   color: white;
 }
 
+/* Botón aleatorio */
 #randomBtn {
-  background: #ffcc00;
+  background: #ffcc00; 
   color: black;
 }
 
-/* === Card Pokémon === */
+/* === Tarjeta principal de Pokémon === */
 .pokemon-card {
   background: white;
   border-radius: 12px;
@@ -88,124 +96,136 @@ body {
   position: relative;
 }
 
+/* Encabezado de la tarjeta Pokémon */
 .pokemon-header {
-  background: linear-gradient(90deg, #4a5eff, #2a34a5);
+  background: linear-gradient(90deg, #4a5eff, #2a34a5); 
   color: white;
   padding: 15px;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px 12px 0 0; 
 }
 
+/* Nombre del Pokémon */
 .pokemon-header h2 {
   margin: 0;
   font-size: 1.5rem;
 }
 
+
+/* === Subtítulo dentro del encabezado de la card === */
 .pokemon-header p {
-  margin: 5px 0 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  margin: 5px 0 0;       
+  font-size: 0.9rem;   
+  opacity: 0.9;        
 }
 
+/* === Cuerpo principal de la card Pokémon === */
 .pokemon-body {
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrar imagen y tipo */
+  flex-direction: column; 
+  align-items: center;   
 }
 
+/* Imagen del Pokémon dentro de la card */
 .pokemon-body img {
   width: 180px;
   margin: 15px 0;
 }
 
+/* Contenedor de los tipos del Pokémon */
 .pokemon-type {
   margin-top: 10px;
 }
 
+/* Estilo para cada "badge" de tipo (ej: Fuego, Agua, Planta...) */
 .type-badge {
   display: inline-block;
-  background: #ffcc00;
-  color: #fcfcfcff;
+  background: #ffcc00;  
+  color: #fcfcfcff;     
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: 20px;   
   font-weight: bold;
   font-size: 0.95rem;
-  text-transform: capitalize;
+  text-transform: capitalize; 
 }
 
-/* === Responsive === */
+/* === Diseño responsive para móviles === */
 @media (max-width: 480px) {
   .search-bar {
-    flex-direction: column;
+    flex-direction: column; /* Input y botones en columna */
   }
 
   .search-bar input {
-    width: 100%;
+    width: 100%; /* Ocupa todo el ancho disponible */
   }
 
   .search-bar button {
-    width: 100%;
+    width: 100%; /* Botones apilados y anchos */
   }
 
   .pokemon-body img {
-    width: 140px;
+    width: 140px; /* Imagen más pequeña en pantallas chicas */
   }
 }
 
-/* Ocultar */
+/* Clase de utilidad para ocultar elementos */
 .hidden {
   display: none;
 }
 
-/* Imagen del Pokémon: estado base y hover */
+/* === Imagen del Pokémon: animación base y hover === */
 #pokemonImage {
-  width: 180px; /* mantiene tu tamaño */
+  width: 180px; 
   margin: 15px 0;
   transition: transform 0.35s cubic-bezier(.2,.8,.2,1), filter 0.35s;
   transform-origin: center center;
-  will-change: transform;
+  will-change: transform;         
   display: block;
 }
 
-/* Hover (también al pasar el ratón por el contenedor .pokemon-body) */
+/* Efecto hover sobre la imagen */
 #pokemonImage:hover,
 .pokemon-body:hover #pokemonImage {
-  transform: translateY(-8px) scale(1.08);
-  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
+  transform: translateY(-8px) scale(1.08); 
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25)); 
   z-index: 2;
 }
 
+/* Botones al pasar el mouse */
 .search-bar button:hover {
   transform: translateY(-4px) scale(1.04);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   cursor: pointer;
 }
 
-/* === Estadísticas === */
+/* === Estadísticas del Pokémon === */
 .pokemon-stats {
   padding: 20px;
   text-align: left;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #eee; 
   flex: 1;
 }
 
+/* Título de la sección de stats */
 .pokemon-stats h3 {
   font-size: 1.2rem;
   margin-bottom: 8px;
-  color: #4a5eff;            
-  font-weight: normal;       
+  color: #4a5eff;         
+  font-weight: normal;     
   position: relative;
 }
 
+/* Línea decorativa bajo el h3 */
 .pokemon-stats h3::after {
   content: "";
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #4a5eff; 
+  background-color: #4a5eff;
   margin-top: 6px;
 }
 
+/* Cada fila de stat */
 .stat {
   display: flex;
   align-items: center;
@@ -213,35 +233,38 @@ body {
   gap: 10px;
 }
 
+/* Nombre de la stat (ej: HP, Attack) */
 .stat span:first-child {
-  flex: 0 0 100px;
+  flex: 0 0 100px;  
   font-size: 0.9rem;
-  color: #333;               
+  color: #333;
 }
 
+/* Barra base (vacía) de la stat */
 .bar {
   flex: 1;
   height: 10px;
-  background: #ddd;
+  background: #ddd;     
   border-radius: 6px;
   overflow: hidden;
 }
 
+/* Parte rellenada de la barra (valor actual) */
 .fill {
   height: 100%;
   background: linear-gradient(90deg, #4CAF50, #FFEB3B); 
-  width: 0%;
-  transition: width 0.5s ease-in-out;
+  width: 0%; 
+  transition: width 0.5s ease-in-out; 
 }
 
+/* Valor numérico de la stat */
 .stat span:last-child {
-  flex: 0 0 30px;
+  flex: 0 0 30px;   
   font-size: 0.85rem;
   text-align: right;
-  color: #002060;           
+  color: #002060;   
 }
-
-/* Contenedor para dividir en dos columnas */
+/* === Contenedor para dividir en dos columnas (stats y movimientos) === */
 .pokemon-details {
   display: flex;
   flex-direction: row;
@@ -250,30 +273,28 @@ body {
   gap: 20px;
 }
 
-
-
-/* Ajuste para pantallas pequeñas */
+/* === Ajuste para pantallas pequeñas: columnas se apilan === */
 @media (max-width: 480px) {
   .pokemon-details {
     flex-direction: column;
   }
 }
 
-/*Movimientos*/
+/* === Sección de movimientos === */
 .pokemon-moves {
   flex: 1;
   border-top: 1px solid #eee;
   padding: 20px;
-  text-align: left
+  text-align: left;
 }
 
-#pokemonMoves{
+#pokemonMoves {
   max-height: 200px;
   overflow-y: auto;
   padding-right: 5px;
-  
 }
 
+/* === Encabezado de la sección movimientos === */
 .pokemon-moves h3 {
   font-size: 1.2rem;
   margin-bottom: 8px;
@@ -291,6 +312,7 @@ body {
   margin-top: 6px;
 }
 
+/* === Lista de movimientos === */
 .moves-list {
   display: flex;
   flex-direction: column;
@@ -305,6 +327,8 @@ body {
   border-radius: 8px;
   padding: 6px 10px;
 }
+
+/* === Tarjeta para cada movimiento (con borde destacado) === */
 .move-card {
   border: 1px solid #ddd;
   border-left: 4px solid #4a5eff; 
@@ -313,21 +337,22 @@ body {
   background: #f9fafb;
   font-size: 0.9rem;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-  
 }
+
 .move-card:hover {
   background: #f9fafb;       
   border-left-color: #2563eb; 
   box-shadow: 0 2px 6px rgba(0,0,0,0.15); 
   transform: translateY(-4px) scale(1.0); 
-
 }
 
+/* === Nombre del movimiento === */
 .move-name {
   font-weight: 600; 
   margin-bottom: 3px;
 }
 
+/* === Navegación (botones siguiente y anterior) === */
 .navigation {
   display: flex;
   justify-content: center;
@@ -336,7 +361,7 @@ body {
 }
 
 .navigation button {
-  background-color:  #ffcc00; /* amarillo */
+  background-color: #ffcc00; 
   color: black;
   font-weight: bold;
   border: none;
@@ -351,6 +376,7 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
+/* === Animación para la card Pokémon (fade-in) === */
 .pokemon-card.animate {
   animation: fadeIn 1.0s ease-in-out;
 }
@@ -366,8 +392,9 @@ body {
   }
 }
 
+/* === Mensaje de error cuando no se encuentra un Pokémon === */
 #notFoundMessage {
-  background-color: #ff4d4d; /* rojo Pokémon */
+  background-color: #ff4d4d; 
   color: white;
   font-weight: bold;
   text-align: center;
@@ -394,5 +421,3 @@ body {
     transform: scale(1);
   }
 }
-
-

@@ -2,38 +2,55 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Etiqueta meta para que el sitio sea responsive en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokédex Digital</title>
+  <!-- Hoja de estilos externa -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     
-  <!-- Encabezado -->
+  <!-- Encabezado principal de la Pokédex -->
   <header class="header">
     <h1 class="gradient-title">Pokédex Digital</h1>
     <p>Descubre el mundo de los Pokémon</p>
   </header>
 
-  <!-- Barra de búsqueda en contenedor -->
+  <!-- Sección de búsqueda -->
   <section class="search-container">
     <div class="search-bar">
+      <!-- Campo de entrada para escribir el nombre del Pokémon -->
       <input type="text" id="searchInput" placeholder="Busca un Pokémon...">
-      <button id="searchBtn">Buscar</button>
-      <button id="randomBtn" class="random">Aleatorio</button>
+      
+      <!-- Botón para realizar la búsqueda -->
+      <button id="searchBtn" type="button">Buscar</button>
+      
+      <!-- Botón para obtener un Pokémon aleatorio -->
+      <button id="randomBtn" class="random" type="button">Aleatorio</button>
     </div>
   </section>
 
+  <!-- Mensaje que aparece si no se encuentra un Pokémon -->
   <p id="notFoundMessage" class="hidden"></p>
 
-  <!-- Card de Pokémon -->
+</body>
+</html>
+
+  <!-- === Card de Pokémon (contenedor principal) === -->
 <section id="pokemonCard" class="pokemon-card hidden">
+  
+  <!-- Encabezado de la tarjeta con nombre e ID -->
   <div class="pokemon-header">
-    <h2 id="pokemonName">Pachirisu</h2>
-    <p id="pokemonId">#417</p>
+    <h2 id="pokemonName">Pachirisu</h2> <!-- Nombre del Pokémon -->
+    <p id="pokemonId">#417</p> <!-- Número en la Pokédex -->
   </div>
 
+  <!-- Cuerpo de la tarjeta con imagen y tipo -->
   <div class="pokemon-body">
-    <img id="pokemonImage" src="" alt="Imagen Pokémon">
+    <!-- Imagen oficial del Pokémon -->
+    <img id="pokemonImage" src="" alt="Pokémon">
+    
+    <!-- Tipo principal del Pokémon (puede extenderse a más de un tipo) -->
     <div class="pokemon-type">
       <span id="pokemonType" class="type-badge">Eléctrico</span>
     </div>
@@ -41,58 +58,88 @@
 
   <!-- === Contenedor principal de stats y movimientos === -->
   <div class="pokemon-details">   
-    <!-- === Sección de estadísticas === -->
+
+    <!-- === Sección de estadísticas base del Pokémon === -->
     <div class="pokemon-stats">
       <h3>Estadísticas</h3>
+      
+      <!-- Vida (HP) -->
       <div class="stat">
         <span>Vida</span>
-        <div class="bar"><div id="hp-bar" class="fill"></div></div>
-        <span id="hp-value">0</span>
+        <div class="bar">
+          <div id="hp-bar" class="fill"></div> <!-- Barra de progreso -->
+        </div>
+        <span id="hp-value">0</span> <!-- Valor numérico -->
       </div>
+
+      <!-- Ataque físico -->
       <div class="stat">
         <span>Ataque</span>
-        <div class="bar"><div id="attack-bar" class="fill"></div></div>
+        <div class="bar">
+          <div id="attack-bar" class="fill"></div>
+        </div>
         <span id="attack-value">0</span>
       </div>
+
+      <!-- Defensa física -->
       <div class="stat">
         <span>Defensa</span>
-        <div class="bar"><div id="defense-bar" class="fill"></div></div>
+        <div class="bar">
+          <div id="defense-bar" class="fill"></div>
+        </div>
         <span id="defense-value">0</span>
       </div>
+
+      <!-- Ataque especial -->
       <div class="stat">
         <span>At. Especial</span>
-        <div class="bar"><div id="spattack-bar" class="fill"></div></div>
+        <div class="bar">
+          <div id="spattack-bar" class="fill"></div>
+        </div>
         <span id="spattack-value">0</span>
       </div>
+
+      <!-- Defensa especial -->
       <div class="stat">
         <span>Def. Especial</span>
-        <div class="bar"><div id="spdefense-bar" class="fill"></div></div>
+        <div class="bar">
+          <div id="spdefense-bar" class="fill"></div>
+        </div>
         <span id="spdefense-value">0</span>
       </div>
+
+      <!-- Velocidad -->
       <div class="stat">
         <span>Velocidad</span>
-        <div class="bar"><div id="speed-bar" class="fill"></div></div>
+        <div class="bar">
+          <div id="speed-bar" class="fill"></div>
+        </div>
         <span id="speed-value">0</span>
       </div>
     </div>
 
-    <!-- Seccion de movimientos -->
+    <!-- === Sección de movimientos del Pokémon === -->
     <div class="pokemon-moves">
       <h3>Movimientos</h3>
-      <div id="pokemonMoves" class="moves-list"> </div>
+      <!-- Aquí se insertan dinámicamente los movimientos obtenidos desde la API -->
+      <div id="pokemonMoves" class="moves-list"></div>
     </div>
   </div>
+
+  <!-- === Navegación entre Pokémon === -->
   <div class="navigation">
+    <!-- Botón para mostrar el Pokémon anterior -->
     <button id="prevBtn">⟵ Anterior</button>
+    
+    <!-- Botón para mostrar el Pokémon siguiente -->
     <button id="nextBtn">Siguiente ⟶</button>
   </div>
 </section>
 
+<!-- Espaciado visual (se puede controlar mejor con CSS en lugar de <br>) -->
 <br><br>
 
-
-
-
-  <script src="js/app.js"></script>
+<!-- Script principal donde se maneja la lógica de la Pokédex -->
+<script src="js/app.js"></script>
 </body>
 </html>
