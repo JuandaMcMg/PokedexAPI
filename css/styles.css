@@ -421,3 +421,57 @@ body {
     transform: scale(1);
   }
 }
+
+/* === Filtros por especies ===*/
+.type-filters {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.type-filters .chip {
+  --chip-bg: #fff;                 
+  --chip-hover-bubble: rgba(255, 204, 0, 0.6); 
+  font-size: 14px;
+  padding: 6px 14px;
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform .18s ease, box-shadow .18s ease;
+  
+}
+
+.type-filters .chip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background-color: var(--chip-hover-bubble);
+  transition: width 500ms cubic-bezier(0,0,0.2,1),
+              height 500ms cubic-bezier(0,0,0.2,1);
+}
+.type-filters .chip:hover::after {
+  width: 14em;
+  height: 14em;
+}
+
+.type-filters .chip:active {
+  transform: scale(0.97);
+}
+
+.type-filters .chip.active {
+  outline: 2px solid #ffcc00;
+  box-shadow: 0 0px 5px rgba(0,0,0,0.1);
+}
+
+

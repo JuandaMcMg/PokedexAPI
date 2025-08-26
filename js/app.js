@@ -42,6 +42,7 @@ async function fetchPokemon(query) {
 // (De inglés a español)
 // ============================
 const typeTranslations = {
+  all:"todos",
   normal: "Normal",
   fire: "Fuego",
   water: "Agua",
@@ -250,5 +251,66 @@ function hideNotFoundMessage() {
   const msg = document.getElementById("notFoundMessage");
   msg.classList.add("hidden");
 }
+
+// Se crea un diccionario invertido para poder traducir del español al inglés
+// (esto permite que el usuario seleccione "Fuego" pero la API reciba "fire")
+const typeTranslationsInverted = Object.fromEntries(
+  Object.entries(typeTranslations).map(([en, es]) => [es.toLowerCase(), en])
+);
+
+// Función que busca un Pokémon aleatorio según el tipo seleccionado
+// muestra uno distinto cada vez, dentro del grupo correspondiente
+async function fetchRandomByType(typeEs) {
+  const apiType = typeTranslationsInverted[typeEs.toLowerCase()];
+
+  if (!apiType) {
+    showNotFoundMessage("Tipo desconocido: " + typeEs);
+    return;
+  }
+  // Caso especial cuando el usuario elige “Todos”
+  // muestra cualquier Pokémon de la Pokédex sin importar el tipo
+  if (apiType === "all") {
+    const maxPokemon = 1025;
+    const randomId = Math.floor(Math.random() * maxPokemon) + 1;
+    searchInput.value = "";
+    fetchPokemon(randomId);
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/type/${apiType}`);
+    if (!response.ok) {
+      showNotFoundMessage("No pudimos cargar Pokémon de tipo " + typeEs);
+      return;
+    }
+
+    hideNotFoundMessage();
+    const data = await response.json();
+    const pokemons = data.pokemon;
+
+    if (!pokemons || pokemons.length === 0) {
+      showNotFoundMessage("No hay Pokémon de tipo " + typeEs);
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * pokemons.length);
+    const randomPokemon = pokemons[randomIndex].pokemon.name;
+
+    fetchPokemon(randomPokemon); // usa tu función principal
+
+  } catch (err) {
+    console.error(err);
+    showNotFoundMessage("Error al conectar con la API.");
+  }
+}
+
+// Se conecta la lógica a los botones de la interfaz
+// Esto sirve para que cada botón ejecute la búsqueda del tipo correspondiente
+document.querySelectorAll(".type-filters .chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const typeName = btn.textContent.trim();
+    fetchRandomByType(typeName);
+  });
+});
 
 
