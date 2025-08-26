@@ -407,8 +407,28 @@ body {
   animation: popIn 0.4s ease-out;
 }
 
+/* === Mensaje de error cuando el input esta vacio === */
+#inputWarning {
+background-color: #ff4d4d; 
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 15px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  max-width: 300px;
+  font-size: 1rem;
+  animation: popIn 0.4s ease-out;
+}
+
+/* === Ocultar mensaje === */
 #notFoundMessage.hidden {
   display: none;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @keyframes popIn {
@@ -430,6 +450,7 @@ body {
   gap: 8px;
 }
 
+  /* Estilo base del chip: fondo blanco, borde negro delgado, texto ajustable y efecto de sombra */
 .type-filters .chip {
   --chip-bg: #fff;                 
   --chip-hover-bubble: rgba(255, 204, 0, 0.6); 
@@ -437,16 +458,16 @@ body {
   padding: 6px 14px;
   background: var(--chip-bg);
   color: var(--chip-text);
-  border: none;
-  border-radius: 20px;
+  border: 1px solid #b9afafff;       
+  border-radius: 20px;          
   cursor: pointer;
   position: relative;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   transition: transform .18s ease, box-shadow .18s ease;
-  
 }
 
+/* Burbuja animada que aparece al pasar el mouse */
 .type-filters .chip::after {
   content: "";
   position: absolute;
@@ -460,18 +481,24 @@ body {
   transition: width 500ms cubic-bezier(0,0,0.2,1),
               height 500ms cubic-bezier(0,0,0.2,1);
 }
+
+/* Expande la burbuja al hacer hover */
 .type-filters .chip:hover::after {
   width: 14em;
   height: 14em;
 }
 
+/* Efecto de clic: se encoge ligeramente */
 .type-filters .chip:active {
   transform: scale(0.97);
 }
 
+/* Estilo del chip activo: borde amarillo y sombra extra */
 .type-filters .chip.active {
   outline: 2px solid #ffcc00;
   box-shadow: 0 0px 5px rgba(0,0,0,0.1);
 }
+
+
 
 

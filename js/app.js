@@ -9,33 +9,74 @@ const pokemonName = document.getElementById("pokemonName");   // Nombre del Pok�
 const pokemonId = document.getElementById("pokemonId");       // Número de la Pokédex
 const pokemonImage = document.getElementById("pokemonImage"); // Imagen oficial del Pokémon
 const pokemonType = document.getElementById("pokemonType");   // Tipos (Ej: Agua, Fuego, etc.)
+const inputWarning = document.getElementById("inputWarning"); // Mensaje cuando input está vacío
+const notFoundMessage = document.getElementById("notFoundMessage"); // Mensaje de "No encontrado"
+
 
 // ============================
-// Función: Obtener Pokémon por nombre o ID
+// Ocultar avisos
+// ============================
+
+let notFoundTimeout;
+
+function showNotFoundMessage(text) {
+  const msg = document.getElementById("notFoundMessage");
+  msg.textContent = text;
+  msg.classList.remove("hidden");
+
+  // Reinicia animación CSS
+  msg.style.animation = "none";
+  void msg.offsetWidth; 
+  msg.style.animation = null;
+
+  // Ocultar automáticamente después de 3s
+  clearTimeout(notFoundTimeout);
+  notFoundTimeout = setTimeout(() => {
+    hideNotFoundMessage();
+  }, 3000);
+}
+
+function hideNotFoundMessage() {
+  clearTimeout(notFoundTimeout);
+  const msg = document.getElementById("notFoundMessage");
+  msg.classList.add("hidden");
+}
+
+// ============================
+// Función: Obtener pokémon por nombre o ID
 // ============================
 async function fetchPokemon(query) {
-  try {
-    const q = String(query).trim().toLowerCase(); // Normaliza el input del usuario
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`); // Consulta a la API
+  const q = String(query).trim();
 
-    // Si no se encuentra el Pokémon
+  // Si no hay texto, muestra advertencia y sale
+  if (!q) {
+    inputWarning.textContent = "Por favor escribe el nombre o número del Pokémon 🧐";
+    inputWarning.classList.remove("hidden");
+
+    setTimeout(() => {
+      inputWarning.classList.add("hidden");
+    }, 3000);
+
+    return;
+  } else {
+    inputWarning.classList.add("hidden");
+  }
+
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);
     if (!response.ok) {
       showNotFoundMessage("¡Ups! No encontramos ese Pokémon 😢");
       return;
-    } else {
-      hideNotFoundMessage(); // Limpia mensaje de error si hay éxito
     }
 
-    // Convierte la respuesta a JSON
+    hideNotFoundMessage(); // <-- esto asegura que se oculta al encontrar un Pokémon
     const data = await response.json();
-
-    // Renderiza los datos en la interfaz
     renderPokemon(data);
-
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 
 // ============================
 // Diccionario de traducción de tipos
@@ -187,15 +228,13 @@ function setStat(statName, value) {
 
 // Evento: click en botón "Buscar"
 searchBtn.addEventListener("click", () => {
-  const query = searchInput.value.trim();
-  if (query) fetchPokemon(query); // Solo ejecuta si hay texto
+  fetchPokemon(searchInput.value);
 });
 
 // Evento: tecla Enter en el input
 searchInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    const query = searchInput.value.trim();
-    if (query) fetchPokemon(query);
+    fetchPokemon(searchInput.value);
   }
 });
 
@@ -248,7 +287,7 @@ document.getElementById('prevBtn').addEventListener('click', () => {
 // ============================
 
 // Muestra un mensaje cuando no se encuentra el Pokémon
-function showNotFoundMessage(text) {
+/*function showNotFoundMessage(text) {
   const msg = document.getElementById("notFoundMessage");
   msg.textContent = text;
   msg.classList.remove("hidden");
@@ -263,7 +302,7 @@ function showNotFoundMessage(text) {
 function hideNotFoundMessage() {
   const msg = document.getElementById("notFoundMessage");
   msg.classList.add("hidden");
-}
+}*/
 
 // Se crea un diccionario invertido para poder traducir del español al inglés
 // (esto permite que el usuario seleccione "Fuego" pero la API reciba "fire")
