@@ -116,8 +116,21 @@ async function renderMoves(pokemon) {
   // Limpiamos cualquier movimiento anterior antes de renderizar los nuevos
   pokemonMovesContainer.innerHTML = "";
 
+  let moves = pokemon.moves;
+
+  if (!moves || moves.length === 0) {
+    const baseName = pokemon.name.split("-")[0];
+    try {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${baseName}`);
+      const baseData = await res.json();
+      moves = baseData.moves;
+    } catch (err) {
+      console.error("Error obteniendo movimientos base:", err);
+      return;
+    }
+  }
   // Recorremos la lista de movimientos que devuelve la API de Pokémon
-  for (const m of pokemon.moves) {
+  for (const m of moves) {
     try {
       // Consultamos la URL del movimiento para obtener más datos (tipo, poder, precisión)
       const res = await fetch(m.move.url);
